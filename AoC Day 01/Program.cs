@@ -1,10 +1,12 @@
-﻿SolvePuzzleOne();
+﻿using Utilities;
+
+SolvePuzzleOne();
 SolvePuzzleTwo();
 
 void SolvePuzzleOne()
 {
     var cpt = 0;
-    var data = GetIntDataFromFile();
+    var data = DataLoader.GetIntDataFromFile();
 
     for (var i = 1; i < data.Length; i++)
     {
@@ -18,7 +20,7 @@ void SolvePuzzleOne()
 void SolvePuzzleTwo()
 {
     var cpt = 0;
-    var data = GetIntDataFromFile();
+    var data = DataLoader.GetIntDataFromFile();
     var previousSum = data[0] + data[1] + data[2];
 
     for (var i = 2; i < data.Length - 1; i++)
@@ -31,15 +33,4 @@ void SolvePuzzleTwo()
     }
 
     Console.WriteLine("Réponse 2 : " + cpt);
-}
-
-int[] GetIntDataFromFile(bool isTest = false)
-{
-    return GetStringDataFromFile(isTest).Select(line => Int32.Parse(line)).ToArray();
-}
-
-string[] GetStringDataFromFile(bool isTest = false)
-{
-    var fileName = isTest ? "Test" : "Puzzle";
-    return File.ReadAllLines($@"..\..\..\Data\{fileName}Input.txt");
 }
