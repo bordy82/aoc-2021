@@ -14,7 +14,7 @@ void SolvePuzzleOne()
             cpt++;
     }
 
-    Console.WriteLine("Réponse 1 : " + cpt);
+    Console.WriteLine($"Réponse 1 : {cpt}");
 }
 
 void SolvePuzzleTwo()
@@ -32,5 +32,5 @@ void SolvePuzzleTwo()
         previousSum = sum;
     }
 
-    Console.WriteLine("Réponse 2 : " + cpt);
+    Console.WriteLine($"Réponse 2 : {cpt}");
 }
