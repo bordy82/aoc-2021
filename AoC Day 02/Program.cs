@@ -12,24 +12,25 @@ void SolvePuzzleOne()
 
     for (var i = 0; i < data.Length; i++)
     {
-        var command = data[i].Split(' ');
+        var input = data[i].Split(' ');
+        var command = input[0];
+        var commandValue = Int32.Parse(input[1]);
 
-        switch (command[0])
+        switch (command)
         {
             case "forward":
-                currentPosition += Int32.Parse(command[1]);
+                currentPosition += commandValue;
                 break;
             case "down":
-                currentDepth += Int32.Parse(command[1]);
+                currentDepth += commandValue;
                 break;
             case "up":
-                currentDepth -= Int32.Parse(command[1]);
+                currentDepth -= commandValue;
                 break;
-
         }
     }
 
-    Console.WriteLine($"Réponse 1 : {currentPosition*currentDepth}");
+    Console.WriteLine($"Réponse 1 : {currentPosition * currentDepth}");
 }
 
 void SolvePuzzleTwo()
@@ -42,19 +43,21 @@ void SolvePuzzleTwo()
 
     for (var i = 0; i < data.Length; i++)
     {
-        var command = data[i].Split(' ');
+        var input = data[i].Split(' ');
+        var command = input[0];
+        var commandValue = Int32.Parse(input[1]);
 
-        switch (command[0])
+        switch (command)
         {
             case "forward":
-                currentPosition += Int32.Parse(command[1]);
-                currentDepth += (currentAim * Int32.Parse(command[1]));
+                currentPosition += commandValue;
+                currentDepth += currentAim * commandValue;
                 break;
             case "down":
-                currentAim += Int32.Parse(command[1]);
+                currentAim += commandValue;
                 break;
             case "up":
-                currentAim -= Int32.Parse(command[1]);
+                currentAim -= commandValue;
                 break;
         }
     }

@@ -5,9 +5,9 @@ SolvePuzzleTwo();
 
 void SolvePuzzleOne()
 {
-    var data = DataLoader.GetIntDataFromFile(true);
+    var data = DataLoader.GetStringDataFromFile(true);
 
-    for (var i = 1; i < data.Length; i++)
+    for (var i = 0; i < data.Length; i++)
     {
 
     }
@@ -17,9 +17,9 @@ void SolvePuzzleOne()
 
 void SolvePuzzleTwo()
 {
-    var data = DataLoader.GetIntDataFromFile(true);
+    var data = DataLoader.GetStringDataFromFile(true);
 
-    for (var i = 1; i < data.Length; i++)
+    for (var i = 0; i < data.Length; i++)
     {
 
     }
