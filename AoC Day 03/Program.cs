@@ -9,7 +9,7 @@ void SolvePuzzleOne()
 
     for (var i = 1; i < data.Length; i++)
     {
-        
+
     }
 
     Console.WriteLine($"Réponse 1 : ");
