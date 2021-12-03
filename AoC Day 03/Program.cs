@@ -5,27 +5,24 @@ SolvePuzzleTwo();
 
 void SolvePuzzleOne()
 {
-    var data = DataLoader.GetStringDataFromFile();
-
     var gammaRate = "";
     var epsilonRate = "";
 
+    var data = DataLoader.GetStringDataFromFile();
     var countTable = new int[data[0].Length];
     
     for (var i = 0; i < data.Length; i++)
     {
         for(var j = 0; j < data[i].Length; j++)
             countTable[j] += data[i][j] == '1' ? 1 : 0;
-            
     }
 
-    foreach(var count in countTable)
+    foreach(var oneCount in countTable)
     {
-        var oneCount = count;
-        var zeroCount = data.Length - count;
+        var zeroCount = data.Length - oneCount;
 
-        gammaRate += count > zeroCount ? "1" : "0";
-        epsilonRate += count > zeroCount ? "0" : "1";
+        gammaRate += oneCount > zeroCount ? "1" : "0";
+        epsilonRate += oneCount > zeroCount ? "0" : "1";
     }
 
     var gammaValue = Convert.ToInt32(gammaRate, 2);
@@ -43,8 +40,7 @@ List<string> GetNewListOxygen(int index, List<string> data)
         cpt += item[index] == '1' ? 1 : 0;
     }
 
-    foreach (var item in data.Where(x => x[index] == (cpt >= (data.Count - cpt)? '1' : '0')))
-        newData.Add(item);
+    newData.AddRange(data.Where(x => x[index] == (cpt >= (data.Count - cpt) ? '1' : '0')));
 
     return newData;
 }
@@ -58,8 +54,7 @@ List<string> GetNewListCO2(int index, List<string> data)
         cpt += item[index] == '1' ? 1 : 0;
     }
 
-    foreach (var item in data.Where(x => x[index] == (cpt >= (data.Count - cpt) ? '0' : '1')))
-        newData.Add(item);
+    newData.AddRange(data.Where(x => x[index] == (cpt >= (data.Count - cpt) ? '0' : '1')));
 
     return newData;
 }
@@ -67,8 +62,6 @@ List<string> GetNewListCO2(int index, List<string> data)
 void SolvePuzzleTwo()
 {
     var data = DataLoader.GetStringDataFromFile();
-
-    var finished = true;
     var dataList = data.ToList();
 
     for(var i = 0; i < data[0].Length; i++)
