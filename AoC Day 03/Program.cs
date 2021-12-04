@@ -61,6 +61,11 @@ void SolvePuzzleTwo()
     Console.WriteLine($"Réponse 2 : { oxygenValue * co2Value }");
 }
 
+/// <summary>
+/// Get a new list based on the '1' count.
+/// </summary>
+/// <param name="valueOne">The value to look for at the index if there are more or equalt 1's.</param>
+/// <param name="valueZero">The value to look for at the index if there are more 0's.</param>
 List<string> GetNewList(int index, List<string> data, char valueOne, char valueZero)
 {
     var cpt = 0;
@@ -74,31 +79,3 @@ List<string> GetNewList(int index, List<string> data, char valueOne, char valueZ
 
     return newData;
 }
-
-//List<string> GetNewListOxygen(int index, List<string> data)
-//{
-//    var cpt = 0;
-//    var newData = new List<string>();
-//    foreach (var item in data)
-//    {
-//        cpt += item[index] == '1' ? 1 : 0;
-//    }
-
-//    newData.AddRange(data.Where(x => x[index] == (cpt >= (data.Count - cpt) ? '1' : '0')));
-
-//    return newData;
-//}
-
-//List<string> GetNewListCO2(int index, List<string> data)
-//{
-//    var cpt = 0;
-//    var newData = new List<string>();
-//    foreach (var item in data)
-//    {
-//        cpt += item[index] == '1' ? 1 : 0;
-//    }
-
-//    newData.AddRange(data.Where(x => x[index] == (cpt >= (data.Count - cpt) ? '0' : '1')));
-
-//    return newData;
-//}
