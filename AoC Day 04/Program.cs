@@ -53,9 +53,7 @@ void SolvePuzzleTwo()
 
         var winning = new Dictionary<string[,], bool>();
         foreach (var card in bingoCards)
-        {
             winning[card] = ValidateCard(card);
-        }
 
         // We keep the reference to the last board to win.
         if (winning.Count(x => x.Value) == winning.Count() - 1)
