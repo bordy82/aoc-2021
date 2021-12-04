@@ -10,37 +10,29 @@ void SolvePuzzleOne()
     var bingoCards = CreateBingoCards(data);
     var drawNumbers = data.First().Split(',');
 
+    var winningCardValue = 0;
     var lastDraw = string.Empty;
-    var winningCard = new string[5,5];
 
     foreach(var draw in drawNumbers)
     {
         lastDraw = draw;
-        var bingoWon = false;
 
         MarkDraw(draw, bingoCards);
 
         foreach (var card in bingoCards)
         {
-            var win = ValidateCard(card);
-
-            if (win)
+            if (ValidateCard(card))
             {
-                bingoWon = true;
-                winningCard = card;
+                winningCardValue = GetCardValue(card);
                 break;
             }
         }
 
-        if (bingoWon)
-        {
+        if (winningCardValue > 0)
             break;
-        }
     }
 
-    var cardValue = GetCardValue(winningCard);
-
-    Console.WriteLine($"Réponse 1 : { cardValue * Int32.Parse(lastDraw) }");
+    Console.WriteLine($"Réponse 1 : { winningCardValue * Int32.Parse(lastDraw) }");
 }
 
 void SolvePuzzleTwo()
@@ -52,33 +44,24 @@ void SolvePuzzleTwo()
 
     var lastDraw = string.Empty;
     var lastBoardToWin = new string[5,5];
-
+    
     foreach (var draw in drawNumbers)
     {
-        var cptWinners = 0;
         lastDraw = draw;
 
         MarkDraw(draw, bingoCards);
 
         var winning = new Dictionary<string[,], bool>();
         foreach (var card in bingoCards)
-            winning[card] = false;
-
-        foreach (var card in bingoCards)
         {
-            var win = ValidateCard(card);
-
-            if (win)
-            {
-                cptWinners++;
-                winning[card] = true;
-            }
+            winning[card] = ValidateCard(card);
         }
 
-        if (winning.Where(x => x.Value).Count() == winning.Count() - 1)
-            lastBoardToWin = winning.Where(x => !x.Value).First().Key;
+        // We keep the reference to the last board to win.
+        if (winning.Count(x => x.Value) == winning.Count() - 1)
+            lastBoardToWin = winning.First(x => !x.Value).Key;
 
-        if (cptWinners == bingoCards.Count)
+        if (winning.All(x => x.Value))
             break;
     }
 
