@@ -31,34 +31,6 @@ void SolvePuzzleOne()
     Console.WriteLine($"Réponse 1 : { gammaValue * epsilonValue }");
 }
 
-List<string> GetNewListOxygen(int index, List<string> data)
-{
-    var cpt = 0;
-    var newData = new List<string>();
-    foreach (var item in data)
-    {
-        cpt += item[index] == '1' ? 1 : 0;
-    }
-
-    newData.AddRange(data.Where(x => x[index] == (cpt >= (data.Count - cpt) ? '1' : '0')));
-
-    return newData;
-}
-
-List<string> GetNewListCO2(int index, List<string> data)
-{
-    var cpt = 0;
-    var newData = new List<string>();
-    foreach (var item in data)
-    {
-        cpt += item[index] == '1' ? 1 : 0;
-    }
-
-    newData.AddRange(data.Where(x => x[index] == (cpt >= (data.Count - cpt) ? '0' : '1')));
-
-    return newData;
-}
-
 void SolvePuzzleTwo()
 {
     var data = DataLoader.GetStringDataFromFile();
@@ -66,7 +38,7 @@ void SolvePuzzleTwo()
 
     for(var i = 0; i < data[0].Length; i++)
     {
-        dataList = GetNewListOxygen(i, dataList);
+        dataList = GetNewList(i, dataList, '1', '0');
 
         if (dataList.Count == 1)
             break;
@@ -78,13 +50,55 @@ void SolvePuzzleTwo()
 
     for (var i = 0; i < data[0].Length; i++)
     {
-        dataList = GetNewListCO2(i, dataList);
+        dataList = GetNewList(i, dataList, '0', '1');
 
         if (dataList.Count == 1)
             break;
     }
 
-    var CO2Value = Convert.ToInt32(dataList.First(), 2);
+    var co2Value = Convert.ToInt32(dataList.First(), 2);
 
-    Console.WriteLine($"Réponse 2 : { oxygenValue * CO2Value }");
+    Console.WriteLine($"Réponse 2 : { oxygenValue * co2Value }");
 }
+
+List<string> GetNewList(int index, List<string> data, char valueOne, char valueZero)
+{
+    var cpt = 0;
+    var newData = new List<string>();
+    foreach (var item in data)
+    {
+        cpt += item[index] == '1' ? 1 : 0;
+    }
+
+    newData.AddRange(data.Where(x => x[index] == (cpt >= (data.Count - cpt) ? valueOne : valueZero)));
+
+    return newData;
+}
+
+//List<string> GetNewListOxygen(int index, List<string> data)
+//{
+//    var cpt = 0;
+//    var newData = new List<string>();
+//    foreach (var item in data)
+//    {
+//        cpt += item[index] == '1' ? 1 : 0;
+//    }
+
+//    newData.AddRange(data.Where(x => x[index] == (cpt >= (data.Count - cpt) ? '1' : '0')));
+
+//    return newData;
+//}
+
+//List<string> GetNewListCO2(int index, List<string> data)
+//{
+//    var cpt = 0;
+//    var newData = new List<string>();
+//    foreach (var item in data)
+//    {
+//        cpt += item[index] == '1' ? 1 : 0;
+//    }
+
+//    newData.AddRange(data.Where(x => x[index] == (cpt >= (data.Count - cpt) ? '0' : '1')));
+
+//    return newData;
+//}
