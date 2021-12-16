@@ -50,6 +50,8 @@ void SolvePuzzleTwo()
 {
     var data = DataLoader.GetStringDataFromFile();
 
+    var super = DateTime.Now;
+
     // On construit une table de reference, ex : CH -> B devient CB,HB
     var reference = new Dictionary<string, string>();
     for (var i = 2; i < data.Length; i++)
@@ -121,4 +123,5 @@ void SolvePuzzleTwo()
     var min = letterDict.Min(x => x.Value);
 
     Console.WriteLine($"Réponse 2 : {max - min}");
+    Console.WriteLine($"Time elapsed : {DateTime.Now - super}");
 }
