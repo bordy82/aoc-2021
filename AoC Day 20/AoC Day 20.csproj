@@ -8,8 +8,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Aoc Utilities\Aoc Utilities.csproj" />
-  </ItemGroup>
-
 </Project>
